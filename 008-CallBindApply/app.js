@@ -25,16 +25,25 @@ var sushantFormal = sushant.intro.bind(sushant, 'formal')
 // sushantFormal('Good Evening')
 
 // Real World Example
-var birthYears = [1989, 2004, 2003, 1980]
+var birthYears = [1989, 2004, 2010, 1980]
 
-function calculateArray(arr, fn){
+function calculateArray(arr, fn) {
     var newArr = []
-    for(var i = 0; i < arr.length; i++){
+    for (var i = 0; i < arr.length; i++) {
         newArr.push(fn(arr[i]))
     }
     return newArr
 }
 
-function calculateAge(element){
+function calculateAge(element) {
     return 2022 - element
 }
+
+function isFullAge(limit, element) {
+    return element >= limit
+}
+
+var ages = calculateArray(birthYears, calculateAge)
+var japan = calculateArray(ages, isFullAge.bind(this, 20))
+console.log(ages)
+console.log(japan)
