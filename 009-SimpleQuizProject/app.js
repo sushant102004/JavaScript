@@ -1,44 +1,41 @@
-(function () {
-    function Question(ques, answers, correct) {
-        this.ques = ques
-        this.answers = answers
-        this.correct = correct
+function Question(ques, ans, correctAns) {
+    this.ques = ques
+    this.ans = ans
+    this.correctAns = correctAns
+}
+
+let quesOne = new Question('Question One', ['Correct', 'Incorrect'], 0)
+let quesTwo = new Question('Question Two', ['Incorrect', 'Correct'], 1)
+
+let questions = [quesOne, quesTwo]
+
+Question.prototype.showQuestion = function () {
+    console.log(this.ques)
+    for (let i = 0; i < this.ans.length; i++) {
+        console.log(`${i} : ${this.ans[i]}`)
     }
+}
 
-    Question.prototype.displayQuestion = function () {
-        console.log(this.ques)
-        for (var i = 0; i < this.answers.length; i++) {
-            console.log(i + ' : ' + this.answers[i])
-        }
+Question.prototype.checkAnswer = function (ans) {
+    if (ans == this.correctAns) {
+        console.log('Correct!!!!')
+    } else {
+        console.log('Opps Wrong Answer!!!!')
     }
+}
 
-    Question.prototype.checkAnswer = function (ans) {
-        if (ans == this.correct) {
-            console.log('Correct!!!!')
-        } else {
-            console.log('Try Again')
-        }
+function reloadQuestions() {
+    let randomNumber = Math.floor(Math.random() * questions.length)
+    questions[randomNumber].showQuestion()
+    let ans = prompt('Enter Answer: ')
+    questions[randomNumber].checkAnswer(ans)
 
+    if (ans == 'exit') {
+        console.log('Quitting Game')
+        return
+    } else {
+        reloadQuestions()
     }
+}
 
-    var quesOne = new Question('Is JavaScript Good Language?', ['Yes', 'No'], 0)
-    var quesTwo = new Question('Can We Use JavaScript For App Developement?', ['Yes', 'No'], 0)
-    var quesThree = new Question('Who Programmed You?', ['John', 'Sushant', 'Michael'], 1)
-
-    var questions = [quesOne, quesTwo, quesThree]
-
-    function nextQuestion() {
-        var randomNumber = Math.floor(Math.random() * questions.length)
-        questions[randomNumber].displayQuestion()
-        var ans = prompt('Enter Your Answer')
-        questions[randomNumber].checkAnswer(ans)
-        if (ans == 'exit') {
-            console.log('Exiting Game')
-            return
-        } else {
-            nextQuestion()
-        }
-    }
-
-    nextQuestion()
-})()
+reloadQuestions()

@@ -44,4 +44,4 @@ var john = {
 }
 
 john.calculateAge = object.calculateAge
-john.calculateAge()
+// john.calculateAge()
