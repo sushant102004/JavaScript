@@ -30,18 +30,11 @@ var object = {
         console.log(this.name)
         console.log(this.dateOfBirth)
     },
-    calculateAge: function(){
-        var age = 2022 - this.dateOfBirth
-        console.log(age)
-    }
+    // calculateAge: function(){
+    //     var age = 2022 - this.dateOfBirth
+    //     console.log(age)
+    // }
 }
 
-object.calculateAge()
-
-var john = {
-    name: 'John Mathew',
-    dateOfBirth: 2000,
-}
-
-john.calculateAge = object.calculateAge
-// john.calculateAge()
+object.showData()
+// object.calculateAge()
